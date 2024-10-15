@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serie Fibonacci</title>
+</head>
+<body>
+    <h1>Serie de Fibonacci</h1>
+    <label for="numero">Ingresa un número:</label>
+    <input type="text" id="numero">
+    <button onclick="generarFibonacci()">Generar Fibonacci</button>
+    
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+
+    <script>
+        function esNumeroValido(valor) {
+            const numero = Number(valor);
+            return !isNaN(numero) && Number.isInteger(numero) && numero > 0;
+        }
+
+        function generarFibonacci() {
+            const input = document.getElementById('numero').value;
+            const resultado = document.getElementById('resultado');
+
+            if (!esNumeroValido(input)) {
+                alert('Por favor, ingresa un número entero positivo.');
+                resultado.textContent = ''; 
+                return;
+            }
+
+            const n = Number(input);
+            const fibonacciSerie = [];
+
+     
+            let a = 0, b = 1;
+            for (let i = 0; i < n; i++) {
+                fibonacciSerie.push(a);
+                const siguiente = a + b;
+                a = b;
+                b = siguiente;
+            }
+
+            resultado.textContent = fibonacciSerie.join(', ');
+        }
+    </script>
+</body>
+</html>
